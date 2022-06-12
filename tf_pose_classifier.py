@@ -55,7 +55,7 @@ model.compile(optimizer='adam',
               metrics=['accuracy'])
 model.summary()
 
-epochs=20
+epochs=50
 history = model.fit(
   train_ds,
   epochs=epochs
