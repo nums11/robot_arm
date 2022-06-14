@@ -61,7 +61,7 @@ history = model.fit(
   epochs=epochs
 )
 
-model.save('tf_pose_classifier_v3.h5')
+model.save('tf_pose_classifier_v4.h5')
 
 acc = history.history['accuracy']
 loss = history.history['loss']
