@@ -61,7 +61,7 @@ history = model.fit(
   epochs=epochs
 )
 
-model.save('tf_pose_classifier_v2.h5')
+model.save('tf_pose_classifier_v3.h5')
 
 acc = history.history['accuracy']
 loss = history.history['loss']
@@ -82,7 +82,7 @@ plt.title('Training Loss')
 plt.show()
 
 
-img_path = os.path.join(os.getcwd(), 'data/pos/pos.jpg')
+img_path = os.path.join(os.getcwd(), 'data/pos/pos2.jpg')
 img = tf.keras.utils.load_img(
     img_path, target_size=(img_height, img_width)
 )
