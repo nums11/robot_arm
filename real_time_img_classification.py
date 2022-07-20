@@ -32,7 +32,7 @@ import cv2
 # Fixed by just training longer now add real-time component
 
 def predictImageClass(img):
-    model = tf.keras.models.load_model('tf_pose_classifier_v4.h5')
+    model = tf.keras.models.load_model('tf_pose_classifier_v5.h5')
 
     img_array = tf.keras.utils.img_to_array(img)
     img_array = tf.expand_dims(img_array, 0) # Create a batch
@@ -43,7 +43,7 @@ def predictImageClass(img):
     score = tf.nn.softmax(predictions[0])
     print("score", score)
 
-    class_names = ['neg','pos']
+    class_names = ['zone 1','zone 2', 'zone 3', 'zone 4']
     print(
         "{} {:.2f} % confidence."
         .format(class_names[np.argmax(score)], 100 * np.max(score))
@@ -55,9 +55,10 @@ def predictImageClass(img):
 
 
 # define a video capture object
-vid = cv2.VideoCapture(0)
+vid = cv2.VideoCapture(2)
   
-while(True):
+# while(True):
+for i in range(20):
     # Capture the video frame
     # by frame
     ret, frame = vid.read()
@@ -71,9 +72,13 @@ while(True):
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
         # resized = cv2.resize(frame, (256, 256))
-        # cv2.imwrite('neg7.jpg', frame)
+        # cv2.imwrite('testimage.jpg', frame)
         # predictImageClass(resized)
         break
+    if i == 15:
+        cv2.imwrite('testimage.jpg', resized)
+        break
+
 # After the loop release the cap object
 vid.release()
 # Destroy all the windows
